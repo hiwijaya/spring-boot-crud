@@ -1,7 +1,7 @@
 package com.hiwijaya.crud.entity;
 
-import com.hiwijaya.springcrud.util.RentStatus;
-import com.hiwijaya.springcrud.util.StatusConverter;
+import com.hiwijaya.crud.util.RentStatus;
+import com.hiwijaya.crud.util.StatusConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

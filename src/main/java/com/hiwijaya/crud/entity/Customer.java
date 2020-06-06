@@ -1,7 +1,7 @@
 package com.hiwijaya.crud.entity;
 
-import com.hiwijaya.springcrud.util.Gender;
-import com.hiwijaya.springcrud.util.GenderConverter;
+import com.hiwijaya.crud.util.Gender;
+import com.hiwijaya.crud.util.GenderConverter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
