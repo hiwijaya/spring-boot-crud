@@ -147,12 +147,12 @@ public class Runner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        checkArgs(args);
-
-        createCustomers();
-        createBooks();
-        rent();
-        returnBooks();
+//        checkArgs(args);
+//
+//        createCustomers();
+//        createBooks();
+//        rent();
+//        returnBooks();
 
     }
 
