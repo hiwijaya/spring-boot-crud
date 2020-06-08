@@ -4,8 +4,80 @@ body {
 img {
     width: 100%;
 }
+p {
+    line-height: 1.5em;
+    margin-bottom: 10px;
+}
 a {
     text-decoration: none;
     color: #80BDAB;
     font-weight: bold;
+}
+table {
+    width: 100%;
+    text-align: left;
+}
+th,
+td {
+    padding: 5px 10px;
+}
+th {
+    color: #fff;
+    background-color: #95A5A6;
+}
+td {
+    font-size: 0.8em;
+    border-bottom: 0.7px solid #e0e0e0;
+}
+fieldset {
+    display: block;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    font-size: 1em;
+    padding: 0;
+}
+fieldset p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+fieldset p label {
+    width: 100px;
+}
+legend {
+    font-weight: 500;
+    padding-right: 10px;
+    margin: 10px 0;
+    color: #5F6368;
+
+}
+input, select, textarea {
+    padding: 5px;
+    width: 300px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid #5F6368;
+    box-sizing: border-box;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 7px #5F6368;
+}
+textarea {
+    height: 100px;
+}
+
+
+
+
+.split-box {
+    display: flex;
+    flex-direction: row;
+}
+.split-box .data-box {
+    flex: 1;
+    margin-right: 10px;
+}
+.split-box .form-box {
+    flex: 1;
 }

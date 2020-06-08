@@ -12,6 +12,43 @@
 <body>
     <div th:replace="fragments/general :: header(true)"/>
 
+    <h2>Customer</h2>
+
+    <div class="split-box">
+        <div class="data-box" th:switch="${#lists.size(customers)}">
+            <span th:case="0">There is no customer yet. Create one!</span>
+            <div th:case="*">
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr th:each="customer, i : ${customers}">
+                        <td th:text="${i.count}"></td>
+                        <td th:text="${customer.name}"></td>
+                        <td th:text="${customer.gender}"></td>
+                        <td><a href="/">Edit</a></td>
+                        <td><a th:href="@{/delete/{id}(id=${customer.id})}">Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="form-box">
+            <fieldset>
+                <legend>Update</legend>
+                <p>
+                    <label for="name">Name</label>
+                    <input id="name" type="text" value="" placeholder="e.g John Wick">
+                </p>
+                <p>
+                    <label>Gender</label>
+                </p>
+            </fieldset>
+        </div>
+    </div>
 
 </body>
 </html>
