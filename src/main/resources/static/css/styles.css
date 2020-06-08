@@ -1,6 +1,11 @@
+body {
+    color: #5F6368;
+}
 img {
     width: 100%;
 }
-h1 {
-    color: #5F6368;
+a {
+    text-decoration: none;
+    color: #80BDAB;
+    font-weight: bold;
 }

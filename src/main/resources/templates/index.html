@@ -7,10 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="Happy Indra Wijaya"/>
 
-    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
-    <img th:src="@{/img/banner.png}" />
-    <h1 th:text="'Hello, ' + ${message}"></h1>
+
+    <div th:replace="fragments/general :: header(false)"/>
+
+    <h2 th:text="'Hello, ' + ${message}"></h2>
+    <ul>
+        <li>
+            <a href="/customer">Customer</a>
+        </li>
+        <li>
+            <a href="/book">Book</a>
+        </li>
+        <li>
+            <a href="/rent">Rent</a>
+        </li>
+    </ul>
 </body>
 </html>

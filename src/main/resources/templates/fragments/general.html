@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Header Fragments</title>
+</head>
+<body>
+
+    <header th:fragment="header(showBack)">
+        <img src="/static/img/banner.png" th:src="@{/img/banner.png}" />
+        <a href="/" th:if="${showBack}">Back</a>
+    </header>
+
+</body>
+</html>
