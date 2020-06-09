@@ -52,9 +52,10 @@ legend {
 
 }
 input, select, textarea {
-    padding: 5px;
+    padding: 5px 10px;
     width: 300px;
     height: 50px;
+    margin: 0;
     background: transparent;
     border: 1px solid #5F6368;
     box-sizing: border-box;
@@ -66,6 +67,80 @@ input:focus, select:focus, textarea:focus {
 textarea {
     height: 100px;
 }
+
+button {
+    font-weight: bold;
+    display: inline-block;
+    border: none;
+    padding: 10px 30px;
+    outline: none;
+    letter-spacing: 0.25px;
+    text-decoration: none;
+    color: #FFF;
+    background-color: #95A5A6;
+    transition: 0.3s;
+}
+button:hover {
+    background-color: #829597;
+}
+
+/* radio button */
+input[type="radio"] {
+    width: 100px;
+    height: 30px;
+}
+.radio-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: 50px;
+  padding-left: 30px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: 0.3s;
+}
+.radio-item input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+.radio-item:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.radio-item input:checked ~ .checkmark {
+  background-color: #95A5A6;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.radio-item input:checked ~ .checkmark:after {
+  display: block;
+}
+.radio-item .checkmark:after {
+ 	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+/* radio button */
 
 
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>spring-boot-crud | customer</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Happy Indra Wijaya"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+    <div th:replace="fragments/general :: header(true)"/>
+    <h2>Customer</h2>
+
+    <form action="#"
+          th:action="${editMode} ? @{/customer/edit/{id}(id=${customer.id})} : @{/customer/add}"
+          th:object="${customer}"
+          method="post">
+        <fieldset id="customer-fom">
+            <legend th:text="${editMode} ? 'Edit' : 'Add'"></legend>
+            <p>
+                <label for="name">Name</label>
+                <input id="name" th:field="*{name}" type="text" placeholder="e.g John Wick">
+            </p>
+            <p>
+                <label>Gender</label>
+                <label class="radio-item">Male
+                    <input id="rd-male" type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="radio-item">Female
+                    <input id="rd-female" type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+            </p>
+        </fieldset>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
