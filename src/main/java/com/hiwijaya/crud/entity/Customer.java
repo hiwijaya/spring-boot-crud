@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
@@ -23,10 +25,12 @@ public class Customer {
     private Integer id;
 
     @Column(name = "name", length = 50, nullable = false)
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Column(name = "gender", length = 1, nullable = false)
     @Convert(converter = GenderConverter.class)
+    @NotNull(message = "Gender is mandatory")
     private Gender gender;
 
 

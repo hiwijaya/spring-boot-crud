@@ -36,6 +36,11 @@ fieldset {
     font-size: 1em;
     padding: 0;
 }
+fieldset .err {
+    font-weight: bold;
+    color: #FF6C81;
+    margin-left: 20px;
+}
 fieldset p {
     display: flex;
     flex-direction: row;
