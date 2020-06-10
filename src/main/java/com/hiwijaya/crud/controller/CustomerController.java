@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Happy Indra Wijaya
@@ -74,6 +75,22 @@ public class CustomerController {
         model.addAttribute("editMode", true);
 
         return "customer-form";
+    }
+
+    @GetMapping("/customer/delete/{id}")
+    public String deleteCustomer(@PathVariable("id") Integer id, Model model){
+        Customer customer = customerService.getCustomerById(id);
+        if(customer == null){
+            model.addAttribute("customers", customerService.getAll());
+            model.addAttribute("message", "Delete failed. Invalid customer id: " + id);
+
+            return "customer";
+        }
+
+        customerService.delete(customer);
+        model.addAttribute("customers", customerService.getAll());
+
+        return "customer";
     }
 
 

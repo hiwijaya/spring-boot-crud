@@ -29,7 +29,7 @@
                     <td th:text="${customer.name}"></td>
                     <td th:text="${customer.gender}"></td>
                     <td><a th:href="@{/customer/edit/{id}(id=${customer.id})}">Edit</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${customer.id})}">Delete</a></td>
+                    <td><a th:href="@{/customer/delete/{id}(id=${customer.id})}">Delete</a></td>
                 </tr>
             </table>
         </div>
