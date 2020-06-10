@@ -15,25 +15,28 @@
     <h2>Customer</h2>
 
     <form action="#"
-          th:action="${editMode} ? @{/customer/edit/{id}(id=${customer.id})} : @{/customer/add}"
+          th:action="@{/customer}"
           th:object="${customer}"
-          method="post">
+          method="POST">
         <fieldset id="customer-fom">
             <legend th:text="${editMode} ? 'Edit' : 'Add'"></legend>
+
+            <input type="hidden" th:field="*{id}"/>
             <p>
-                <label for="name">Name</label>
-                <input id="name" th:field="*{name}" type="text" placeholder="e.g John Wick">
+                <label>Name</label>
+                <input th:field="*{name}" type="text" placeholder="e.g John Wick">
             </p>
             <p>
                 <label>Gender</label>
-                <label class="radio-item">Male
-                    <input id="rd-male" type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="radio-item">Female
-                    <input id="rd-female" type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
+                <span th:each="g : ${T(com.hiwijaya.crud.util.Gender).values()}">
+                    <label class="radio-item" th:inline="text">
+                        [[${g.desc}]]
+                        <input type="radio" name="gender"
+                               th:value="${g}"
+                               th:field="*{gender}">
+                        <span class="checkmark"></span>
+                    </label>
+                </span>
             </p>
         </fieldset>
         <button type="submit">Save</button>

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 /**
@@ -32,17 +32,27 @@ public class CustomerController {
         return "index";
     }
 
-    @GetMapping("/customer")
-    public String customer(Model model){
+    @PostMapping("/customer")
+    public String addCustomer(Customer customer, Model model){
+
+        customerService.save(customer);
+
         List<Customer> customers = customerService.getAll();
-        System.out.println("PANJANG CUSTOMERSSSS: " + customers.size());
+        model.addAttribute("customers", customerService.getAll());
+
+        return "redirect:/customer";
+    }
+
+    @GetMapping("/customer")
+    public String customerPage(Model model){
+        List<Customer> customers = customerService.getAll();
         model.addAttribute("customers", customerService.getAll());
 
         return "customer";
     }
 
     @GetMapping("/customer/add")
-    public String addCustomer(Model model){
+    public String addCustomerPage(Model model){
         model.addAttribute("customer", new Customer());
         model.addAttribute("editMode", false);
 
@@ -50,7 +60,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/edit/{id}")
-    public String editCustomer(@PathVariable("id") Integer id, Model model){
+    public String editCustomerPage(@PathVariable("id") Integer id, Model model){
 
         Customer customer = customerService.getCustomerById(id);
         model.addAttribute("customer", customer);
