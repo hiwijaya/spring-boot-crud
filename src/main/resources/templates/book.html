@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>spring-boot-crud | customer</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Happy Indra Wijaya"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:replace="fragments/general :: header(true)"/>
+<h2>Book</h2>
+
+<div class="data-box" th:switch="${#lists.size(books)}">
+    <span th:case="0">There is no book yet. <a href="/book/add">Add one!</a></span>
+    <div th:case="*">
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Rent Price</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="book, i : ${books}">
+                <td th:text="${i.count}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.rentPrice}"></td>
+                <td th:text="${book.rented}"></td>
+                <td><a th:href="@{/book/edit/{id}(id=${book.id})}">Edit</a></td>
+                <td><a th:href="@{/book/delete/{id}(id=${book.id})}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<a href="/book/add">Add Book</a>
+</body>
+</html>
