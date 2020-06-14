@@ -1,7 +1,6 @@
 package com.hiwijaya.crud.controller;
 
 import com.hiwijaya.crud.entity.Book;
-import com.hiwijaya.crud.entity.Customer;
 import com.hiwijaya.crud.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,7 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping("/book")
-    private String addBook(@Valid Book book, BindingResult result, Model model){
+    public String addBook(@Valid Book book, BindingResult result, Model model){
 
         if(result.hasErrors()){
             return "book-form";
@@ -38,7 +37,7 @@ public class BookController {
     }
 
     @GetMapping("/book")
-    private String bookPage(Model model){
+    public String bookPage(Model model){
         List<Book> books = bookService.getAll();
         model.addAttribute("books", books);
 
@@ -64,7 +63,7 @@ public class BookController {
     }
 
     @GetMapping("/book/delete/{id}")
-    public String deleteBookr(@PathVariable("id") Integer id, Model model){
+    public String deleteBook(@PathVariable("id") Integer id, Model model){
         Book book = bookService.getBookById(id);
         if(book == null){
             model.addAttribute("books", bookService.getAll());
@@ -78,8 +77,5 @@ public class BookController {
 
         return "book";
     }
-
-
-
 
 }
