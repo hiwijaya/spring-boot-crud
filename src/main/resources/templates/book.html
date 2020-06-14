@@ -31,7 +31,14 @@
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author}"></td>
                 <td th:text="${book.rentPrice}"></td>
-                <td th:text="${book.rented}"></td>
+                <td>
+                    <img th:if="${book.rented}"
+                         th:src="@{/img/book-green.png}"
+                         class="book-status" src="/static/img/book-green.png"/>
+                    <img th:if="${!book.rented}"
+                         th:src="@{/img/book-red.png}"
+                         class="book-status" src="/static/img/book-red.png"/>
+                </td>
                 <td><a th:href="@{/book/edit/{id}(id=${book.id})}">Edit</a></td>
                 <td><a th:href="@{/book/delete/{id}(id=${book.id})}">Delete</a></td>
             </tr>

@@ -147,17 +147,8 @@ input[type="radio"] {
 }
 /* radio button */
 
-
-
-
-.split-box {
-    display: flex;
-    flex-direction: row;
-}
-.split-box .data-box {
-    flex: 1;
-    margin-right: 10px;
-}
-.split-box .form-box {
-    flex: 1;
+.book-status {
+    width: 18px;
+    height: 18px;
+    padding: 10px;
 }
