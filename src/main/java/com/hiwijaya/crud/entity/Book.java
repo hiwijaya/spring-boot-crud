@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -24,16 +26,20 @@ public class Book {
     private Integer id;
 
     @Column(name = "title", length = 100, nullable = false)
+    @NotBlank(message = "Title is mandatory")
     private String title;
 
     @Column(name = "author", length = 100, nullable = false)
+    @NotBlank(message = "Author is mandatory")
     private String author;
+
     @Column(name = "rent_price")
+    @PositiveOrZero(message = "Cannot be minus")
     private BigDecimal rentPrice = BigDecimal.ZERO;     // dealing with 'default' value of relational mapping
 
     @Column(name = "rented", length = 1)
     @Convert(converter = BooleanConverter.class)
-    private boolean rented;     // Y/N
+    private boolean rented = true;     // Y/N
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<RentTransactionDetail> transactionDetails;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>spring-boot-crud | book</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Happy Indra Wijaya"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:replace="fragments/general :: header(true)"></div>
+<h2>Book</h2>
+
+<form action="#"
+      th:action="@{/book}"
+      th:object="${book}"
+      method="POST">
+    <fieldset id="customer-fom">
+        <legend th:text="${editMode} ? 'Edit' : 'Add'"></legend>
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <p>
+            <label>Title</label>
+            <input th:field="*{title}" type="text" placeholder="e.g Da Vinci Code">
+            <span class="err" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+        </p>
+        <p>
+            <label>Author</label>
+            <input th:field="*{author}" type="text" placeholder="e.g Dan Brown">
+            <span class="err" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
+        </p>
+        <p>
+            <label>Rent Price</label>
+            <input th:field="*{rentPrice}" type="text" placeholder="e.g 100000">
+            <span class="err" th:if="${#fields.hasErrors('rentPrice')}" th:errors="*{rentPrice}"></span>
+        </p>
+
+    </fieldset>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

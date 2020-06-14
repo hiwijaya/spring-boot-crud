@@ -45,7 +45,6 @@ public class CustomerController {
 
         customerService.save(customer);
 
-        List<Customer> customers = customerService.getAll();
         model.addAttribute("customers", customerService.getAll());
 
         return "redirect:/customer";
@@ -53,7 +52,7 @@ public class CustomerController {
 
     @GetMapping("/customer")
     public String customerPage(Model model){
-        List<Customer> customers = customerService.getAll();
+
         model.addAttribute("customers", customerService.getAll());
 
         return "customer";
