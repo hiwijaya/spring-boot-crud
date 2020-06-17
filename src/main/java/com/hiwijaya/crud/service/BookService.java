@@ -38,6 +38,10 @@ public class BookService {
         return repository.findByAuthor(author);
     }
 
+    public List<Book> getAvailableBooks(){
+        return repository.findByRentedFalse();
+    }
+
     public List<Book> getAll(){
         return repository.findAll();
     }

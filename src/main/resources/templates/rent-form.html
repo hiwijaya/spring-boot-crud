@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>spring-boot-crud | book</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Happy Indra Wijaya"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:replace="fragments/general :: header(true)"></div>
+<h2>Book</h2>
+
+<form action="#"
+      th:action="@{/rent}"
+      th:object="${form}"
+      method="POST">
+    <fieldset id="customer-fom">
+        <legend>Rent</legend>
+
+        <p>
+            <label>Customer</label>
+            <select th:field="*{customer}">
+                <option th:each="customer: ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
+            </select>
+        </p>
+        <p>
+            <label>Price</label>
+            <input type="text" placeholder="0" disabled>
+        </p>
+
+        <table>
+            <tr>
+                <th>Select</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Rent Price</th>
+            </tr>
+            <tr th:each="book, i : ${form.books}">
+                <td>
+                    <input type="hidden" th:field="*{books[__${i.index}__].id}"/>
+                    <input type="checkbox" name="selected" class="select-book"
+                           th:field="*{books[__${i.index}__].selected}" />
+                    <input type="hidden" th:field="*{books[__${i.index}__].rentPrice}"/>
+
+                </td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.rentPrice}"></td>
+            </tr>
+        </table>
+
+    </fieldset>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

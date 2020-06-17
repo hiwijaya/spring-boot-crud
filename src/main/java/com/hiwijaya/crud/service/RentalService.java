@@ -5,10 +5,7 @@ import com.hiwijaya.crud.entity.Customer;
 import com.hiwijaya.crud.entity.RentTransaction;
 import com.hiwijaya.crud.entity.RentTransactionDetail;
 import com.hiwijaya.crud.repository.RentalRepository;
-import com.hiwijaya.crud.util.BookUnavailableException;
-import com.hiwijaya.crud.util.Lib;
-import com.hiwijaya.crud.util.RentOutdatedException;
-import com.hiwijaya.crud.util.RentStatus;
+import com.hiwijaya.crud.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +22,15 @@ public class RentalService {
 
     @Autowired
     private RentalRepository repository;
+
+    public BigDecimal rent(RentDto form) throws BookUnavailableException {
+
+        List<Book> bookList = form.getBooks();
+        Book[] books = bookList.stream().filter(book -> book.isSelected()).toArray(Book[]::new);
+
+        return rent(form.getCustomer(), books);
+
+    }
 
     public BigDecimal rent(Customer customer, Book... books) throws BookUnavailableException {
 
@@ -56,6 +62,11 @@ public class RentalService {
     }
 
 
+    /**
+    * form (RentDto) already filter available books
+    *
+    */
+    @Deprecated
     private void checkIfBooksAvailable(Book[] books) throws BookUnavailableException {
         boolean rented = Arrays.stream(books).anyMatch(book -> book.isRented());
         if(rented){

@@ -39,10 +39,13 @@ public class Book {
 
     @Column(name = "rented", length = 1)
     @Convert(converter = BooleanConverter.class)
-    private boolean rented = true;     // Y/N
+    private boolean rented = false;     // Y/N
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<RentTransactionDetail> transactionDetails;
+
+    @Transient  // not persisted
+    private boolean selected = false;   // used for form DTO
 
 
     public Book(Integer id){
@@ -74,6 +77,7 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", rentPrice=" + rentPrice +
                 ", rented=" + rented +
+                ", selected=" + selected +
                 '}';
     }
 }

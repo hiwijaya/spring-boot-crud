@@ -30,19 +30,19 @@ public class RentTransaction {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
-    @NotNull(message = "Please select one of customer")
+//    @NotNull(message = "Please select one of customer")
     private Customer customer;
 
     @Column(name = "rental_date")
     @Temporal(TemporalType.DATE)    // use TIMESTAMP to store date and time
-    @NotNull(message = "Rental date is mandatory")
-    @FutureOrPresent
+//    @NotNull(message = "Rental date is mandatory")
+//    @FutureOrPresent
     private Date rentalDate;
 
     @Column(name = "return_date")
     @Temporal(TemporalType.DATE)
-    @NotNull(message = "Return date is mandatory")
-    @Future
+//    @NotNull(message = "Return date is mandatory")
+//    @Future
     private Date returnDate;
 
     @Column(name = "total")
