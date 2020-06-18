@@ -12,14 +12,14 @@
 </head>
 <body>
 <div th:replace="fragments/general :: header(true)"></div>
-<h2>Book</h2>
+<h2>Rent</h2>
 
 <form action="#"
       th:action="@{/rent}"
       th:object="${form}"
       method="POST">
-    <fieldset id="customer-fom">
-        <legend>Rent</legend>
+    <fieldset>
+        <legend>Transaction</legend>
 
         <p>
             <label>Customer</label>
@@ -39,13 +39,15 @@
                 <th>Author</th>
                 <th>Rent Price</th>
             </tr>
-            <tr th:each="book, i : ${form.books}">
+            <tr th:each="book, i : ${form.books}" th:class="${book.rented} ? 'disabled' : ''">
                 <td>
-                    <input type="hidden" th:field="*{books[__${i.index}__].id}"/>
                     <input type="checkbox" name="selected" class="select-book"
-                           th:field="*{books[__${i.index}__].selected}" />
-                    <input type="hidden" th:field="*{books[__${i.index}__].rentPrice}"/>
+                           th:field="*{books[__${i.index}__].selected}"
+                           th:classappend="${book.rented} ? 'disabled' : ''"
+                           th:disabled="${book.rented}" />
 
+                    <input type="hidden" th:field="*{books[__${i.index}__].id}"/>
+                    <input type="hidden" th:field="*{books[__${i.index}__].rentPrice}"/>
                 </td>
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author}"></td>

@@ -46,9 +46,10 @@ public class RentController {
 
         List<Customer> customers = customerService.getAll();
         List<Book> availableBooks = bookService.getAvailableBooks();
+        List<Book> books = bookService.getAll();
 
         RentDto rentForm = new RentDto();
-        rentForm.setBooks(availableBooks);
+        rentForm.setBooks(books);
 
         model.addAttribute("customers", customers);
         model.addAttribute("form", rentForm);

@@ -156,3 +156,7 @@ input[type="radio"] {
     width: 20px;
     height: 20px;
 }
+.disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
