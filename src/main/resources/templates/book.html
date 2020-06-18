@@ -13,6 +13,8 @@
     <div th:replace="fragments/general :: header(true)"></div>
     <h2>Book</h2>
 
+    <label class="message" th:if="${message != null}" th:text="${message}"></label>
+
     <div th:switch="${#lists.size(books)}">
         <span th:case="0">There is no book yet. <a href="/book/add">Add one!</a></span>
         <div th:case="*">

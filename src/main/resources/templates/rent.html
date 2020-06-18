@@ -13,6 +13,8 @@
     <div th:replace="fragments/general :: header(true)"></div>
     <h2>Rent</h2>
 
+    <label class="message" th:if="${message != null}" th:text="${message}"></label>
+
     <div th:switch="${#lists.size(transactions)}">
         <span th:case="0">There is no one to rent. <a href="/rent/add">Add one if any!</a></span>
         <div th:case="*">

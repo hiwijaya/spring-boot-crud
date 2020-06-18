@@ -13,6 +13,8 @@
     <div th:replace="fragments/general :: header(true)"></div>
     <h2>Customer</h2>
 
+    <label class="message" th:if="${message != null}" th:text="${message}"></label>
+
     <div th:switch="${#lists.size(customers)}">
         <span th:case="0">There is no customer yet. <a href="/customer/add">Create one!</a></span>
         <div th:case="*">

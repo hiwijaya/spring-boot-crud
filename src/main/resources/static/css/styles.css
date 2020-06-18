@@ -147,6 +147,11 @@ input[type="radio"] {
 }
 /* radio button */
 
+.message {
+    font-weight: bold;
+    color: #FF6C81;
+    margin: 10px 0;
+}
 .button-add {
     display:inline-block;
     padding: 20px 0;
