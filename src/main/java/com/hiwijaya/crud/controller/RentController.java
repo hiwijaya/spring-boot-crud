@@ -2,16 +2,20 @@ package com.hiwijaya.crud.controller;
 
 import com.hiwijaya.crud.entity.Book;
 import com.hiwijaya.crud.entity.Customer;
+import com.hiwijaya.crud.entity.RentTransaction;
 import com.hiwijaya.crud.service.BookService;
 import com.hiwijaya.crud.service.CustomerService;
 import com.hiwijaya.crud.service.RentalService;
 import com.hiwijaya.crud.util.BookUnavailableException;
 import com.hiwijaya.crud.util.RentDto;
+import com.hiwijaya.crud.util.RentOutdatedException;
+import com.hiwijaya.crud.util.RentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -35,7 +39,7 @@ public class RentController {
     @GetMapping("/rent")
     public String rentPage(Model model){
 
-        model.addAttribute("transactions", rentalService.getAll());
+        model.addAttribute("transactions", rentalService.getTransactionByStatus(RentStatus.RENT));
 
         return "rent";
 
@@ -69,6 +73,29 @@ public class RentController {
         }
 
         return "redirect:/rent";
+    }
+
+    @GetMapping("/rent/return/{id}")
+    public String returnBook(@PathVariable("id") Long transactionId, Model model){
+
+        RentTransaction transaction = rentalService.getTransaction(transactionId);
+        if(transaction == null){
+            model.addAttribute("transactions", rentalService.getTransactionByStatus(RentStatus.RENT));
+            model.addAttribute("message", "Return failed. Transaction id not found: " + transactionId);
+
+            return "rent";
+        }
+
+        try {
+            rentalService.returnBooks(transaction);
+        } catch (RentOutdatedException e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("transactions", rentalService.getTransactionByStatus(RentStatus.RENT));
+
+        return "rent";
+
     }
 
 }

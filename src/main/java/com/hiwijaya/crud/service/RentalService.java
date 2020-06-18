@@ -112,6 +112,10 @@ public class RentalService {
         return repository.findById(id).orElse(null);
     }
 
+    public List<RentTransaction> getTransactionByStatus(RentStatus status){
+        return repository.findByStatus(status);
+    }
+
     public List<RentTransaction> getAll(){
         return repository.findAll();
     }
