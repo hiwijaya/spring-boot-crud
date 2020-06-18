@@ -147,6 +147,10 @@ input[type="radio"] {
 }
 /* radio button */
 
+.button-add {
+    display:inline-block;
+    padding: 20px 0;
+}
 .book-status {
     width: 18px;
     height: 18px;

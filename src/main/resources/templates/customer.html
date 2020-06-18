@@ -10,10 +10,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
-    <div th:replace="fragments/general :: header(true)"/>
+    <div th:replace="fragments/general :: header(true)"></div>
     <h2>Customer</h2>
 
-    <div class="data-box" th:switch="${#lists.size(customers)}">
+    <div th:switch="${#lists.size(customers)}">
         <span th:case="0">There is no customer yet. <a href="/customer/add">Create one!</a></span>
         <div th:case="*">
             <table>
@@ -32,8 +32,8 @@
                     <td><a th:href="@{/customer/delete/{id}(id=${customer.id})}">Delete</a></td>
                 </tr>
             </table>
+            <a href="/customer/add" class="button-add">Add Customer</a>
         </div>
     </div>
-    <a href="/customer/add">Add Customer</a>
 </body>
 </html>

@@ -10,36 +10,36 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
-<div th:replace="fragments/general :: header(true)"/>
-<h2>Rent</h2>
+    <div th:replace="fragments/general :: header(true)"></div>
+    <h2>Rent</h2>
 
-<div class="data-box" th:switch="${#lists.size(transactions)}">
-    <span th:case="0">There is no one to rent. <a href="/rent/add">Add one if any!</a></span>
-    <div th:case="*">
-        <table>
-            <tr>
-                <th>No</th>
-                <th>Customer</th>
-                <th>Rental Date</th>
-                <th>Return Date</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Return</th>
-            </tr>
-            <tr th:each="transaction, i : ${transactions}">
-                <td th:text="${i.count}"></td>
-                <td th:text="${transaction.customer.name}"></td>
-                <td th:text="${transaction.rentalDate}"></td>
-                <td th:text="${transaction.returnDate}"></td>
-                <td th:text="${transaction.total}"></td>
-                <td th:text="${transaction.status}"></td>
-                <td>
-                    <a th:href="@{/rent/return/{id}(id=${transaction.id})}">Return</a>
-                </td>
-            </tr>
-        </table>
-        <a href="/rent/add">Rent</a>
+    <div th:switch="${#lists.size(transactions)}">
+        <span th:case="0">There is no one to rent. <a href="/rent/add">Add one if any!</a></span>
+        <div th:case="*">
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Customer</th>
+                    <th>Rental Date</th>
+                    <th>Return Date</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Return</th>
+                </tr>
+                <tr th:each="transaction, i : ${transactions}">
+                    <td th:text="${i.count}"></td>
+                    <td th:text="${transaction.customer.name}"></td>
+                    <td th:text="${transaction.rentalDate}"></td>
+                    <td th:text="${transaction.returnDate}"></td>
+                    <td th:text="${transaction.total}"></td>
+                    <td th:text="${transaction.status}"></td>
+                    <td>
+                        <a th:href="@{/rent/return/{id}(id=${transaction.id})}">Return</a>
+                    </td>
+                </tr>
+            </table>
+            <a href="/rent/add" class="button-add">Rent</a>
+        </div>
     </div>
-</div>
 </body>
 </html>
