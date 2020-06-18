@@ -29,7 +29,7 @@
         </p>
         <p>
             <label>Price</label>
-            <input type="text" placeholder="0" disabled>
+            <input id="tx-price" type="text" placeholder="0" disabled>
         </p>
 
         <table>
@@ -44,7 +44,8 @@
                     <input type="checkbox" name="selected" class="select-book"
                            th:field="*{books[__${i.index}__].selected}"
                            th:classappend="${book.rented} ? 'disabled' : ''"
-                           th:disabled="${book.rented}" />
+                           th:disabled="${book.rented}"
+                           th:onclick="'onSelect(this, ' + ${book.rentPrice} + ')'"/>
 
                     <input type="hidden" th:field="*{books[__${i.index}__].id}"/>
                     <input type="hidden" th:field="*{books[__${i.index}__].rentPrice}"/>
@@ -58,5 +59,22 @@
     </fieldset>
     <button type="submit">Save</button>
 </form>
+<script type="text/javascript">
+
+    var total = 0;
+
+    var txPrice = document.getElementById("tx-price");
+
+    function onSelect(element, price){
+        if(element.checked){
+            total = total + price;
+        }
+        else{
+            total = total - price;
+        }
+        txPrice.value = total;
+    }
+
+</script>
 </body>
 </html>
