@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>spring-boot-crud | customer</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Happy Indra Wijaya"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+    <div th:replace="fragments/general :: header(true)"></div>
+    <h2>Authentication</h2>
+
+    <label class="message" th:if="${param.error}">Invalid username and password.</label>
+    <label class="message" th:if="${param.logout}">You have been logged out.</label>
+
+    <form th:action="@{/login}" method="post">
+        <fieldset>
+            <legend>Sign In</legend>
+            <p>
+                <label>Username</label>
+                <input type="text" name="username"/>
+            </p>
+            <p>
+                <label>Password</label>
+                <input type="password" name="password"/>
+            </p>
+            <p>
+                <label></label>
+                <button type="submit">Sign In</button>
+            </p>
+        </fieldset>
+    </form>
+</body>
+</html>

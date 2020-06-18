@@ -147,6 +147,35 @@ input[type="radio"] {
 }
 /* radio button */
 
+.header-menu {
+    display: flex;
+    flex-direction: row;
+
+}
+.separator {
+    font-weight: bold;
+    padding: 0 10px;
+}
+.auth-box {
+    display: flex;
+    flex-direction: row;
+}
+.auth-box .username {
+    font-weight: bold;
+}
+.auth-box .role {
+    margin-right: 10px;
+}
+.logout {
+    font-weight: bold;
+    color: #80BDAB;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
+    height: auto;
+    border: none;
+}
+
 .message {
     display:inline-block;
     font-weight: bold;

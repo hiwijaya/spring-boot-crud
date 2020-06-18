@@ -3,7 +3,6 @@ package com.hiwijaya.crud.controller;
 import com.hiwijaya.crud.entity.Customer;
 import com.hiwijaya.crud.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,17 +21,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-
-    // inject via application.properties
-    @Value("${welcome.message}")
-    private String message;
-
-    @GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("message", message);
-
-        return "index";
-    }
 
     @PostMapping("/customer")
     public String addCustomer(@Valid Customer customer, BindingResult result, Model model){

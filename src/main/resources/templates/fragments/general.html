@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Header Fragments</title>
 </head>
 <body>
 
-    <header th:fragment="header(showBack)">
+    <header th:fragment="header(showHome)">
         <img src="/static/img/banner.png" th:src="@{/img/banner.png}" />
-        <a href="/" th:if="${showBack}">Home</a>
+
+        <div class="header-menu">
+            <a href="/" th:if="${showHome}">Home</a>
+
+            <span class="separator">|</span>
+
+            <div class="auth-box">
+                <div sec:authorize="isAnonymous()">
+                    <a href="/login">Sign In</a>
+                </div>
+
+                <div sec:authorize="isAuthenticated()" class="auth-box">
+                    <span sec:authentication="name" class="username">Happy</span>
+                    <span sec:authentication="principal.authorities" class="role">[ROOT]</span>
+
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Sign Out" class="logout"/>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
     </header>
 
 </body>
